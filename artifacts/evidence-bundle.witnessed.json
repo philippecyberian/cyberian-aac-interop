@@ -1,0 +1,109 @@
+{
+  "bundle_kind": "evidence-bundle/v2",
+  "bundle_version": "2",
+  "checkpoint": {
+    "cose": "0oRY0qQDeB9hcHBsaWNhdGlvbi9jbGwtY2hlY2twb2ludCtjYm9yD6IBeEAyMzU4MmIxYWEyODFkNjAyZWExYjQwMTkyN2EzMzZkMTI0NjRmMDdkZmJlMzRkNjYyOTg3ZTg3MzEwNTExNzAyAnhCMjM1ODJiMWFhMjgxZDYwMmVhMWI0MDE5MjdhMzM2ZDEyNDY0ZjA3ZGZiZTM0ZDY2Mjk4N2U4NzMxMDUxMTcwMiMxBFggCEVPeU605wdZduAbH2wlKbi4wv7AHbybtlZd4hy2vGYBJ6BYiqZka2luZG5jbGwtY2hlY2twb2ludGhsb2dfc2l6ZQFpaXNzdWVkX2F0dDIwMjYtMTAtMjdUMDA6NTc6NTVaaXByZXZfc2l6ZQBqY29tbWl0bWVudFgjgVgg6jHbVvuyg_CjqrqtQ_4GgCZtlEicLJ2AS_U1uAOjB2pvcHJldl9jb21taXRtZW50QFhA7aK6HcuANdP5-afx1Vic-2lgbpjoew03KfDzUZHr8gKURZP1YUK5VWKo-P5WVWJLbrMYUQehReKa2SgnX_qOCQ",
+    "key_id": "08454f794eb4e7075976e01b1f6c2529b8b8c2fec01dbc9bb6565de21cb6bc66",
+    "log_id": "23582b1aa281d602ea1b401927a336d12464f07dfbe34d662987e87310511702",
+    "mmr_size": 1,
+    "prev_root": "",
+    "prev_size": 0,
+    "root": "ea31db56fbb283f0a3aabaad43fe0680266d94489c2c9d804bf535b803a3076a",
+    "timestamp": "2026-10-27T00:57:55Z",
+    "witnesses": [
+      {
+        "ts_url": "https://witness.agentactioncapsule.org",
+        "entry_hash": "c68abea92414e7d64bae3b4c2664d2cab650e34c72bade20414b43a1f79bd65a",
+        "receipt_b64": "0oRPowEnGQGLAQ+hBhpq3/h8oRkBjKEggVj2gxkw6hkw6YdYIHSHxglt0kDt9KquEh8eTqhmLjNFV1l82Si5eE4elqoiWCCyR7M9LWwTDTlZpVRMqBoNXx8lbWp3iK+4c48PE9KtUFgg9ElhA5VulfMAZt9x6JJnqXCprAWe3cj48hYB9JvaH+1YIMWincgeMlB8L2snHRBNVn8FIdp0stRxSdWEDAqcON6WWCC6y9gd3r+ypoVjsh3o0m0A0Zm+EeUd+BT5BkbdZxgrcFgg0LHNchs4T1jtt0St2E3RJl5DjyrdXIXhh61O0b0MQr1YIEpeoa7AxUya/Jkb2OEfyEAM/TUjTbtQ7e3z52jI0RFg9lhARdTL7gY7x/H4jaPC7QqHLPHVa7KZ61DM6k8yxxvCsAkGem2G27Dm7kwpnStCGQcD4Y3aco/poMHqgF6+J02PBA==",
+        "leaf_index": 12521,
+        "tree_size": 12522
+      }
+    ]
+  },
+  "completeness": {
+    "closure_depth": 2,
+    "missing": [],
+    "payloads_mode": "all",
+    "records_mode": "complete",
+    "suppressed_fields": []
+  },
+  "completeness_certificate": {
+    "body_digests": [
+      "9e8a0d30f7bf337d2dca6eaaa885c9ea85c35700e6a17dd60525e1023d16aa29"
+    ],
+    "first_seq": 1,
+    "last_seq": 1,
+    "log_id": "23582b1aa281d602ea1b401927a336d12464f07dfbe34d662987e87310511702",
+    "memberships": {
+      "9e8a0d30f7bf337d2dca6eaaa885c9ea85c35700e6a17dd60525e1023d16aa29": {
+        "inclusion_proof": {
+          "kind": "inclusion",
+          "leaf_index": 0,
+          "peaks_left": [],
+          "peaks_right": [],
+          "size": 1,
+          "v": 1,
+          "witness": []
+        },
+        "log_coordinates": {
+          "leaf_index": 0,
+          "log_id": "23582b1aa281d602ea1b401927a336d12464f07dfbe34d662987e87310511702",
+          "seq": 1
+        }
+      }
+    },
+    "range_proof": {
+      "from_index": 0,
+      "from_seq": 1,
+      "size": 1,
+      "to_index": 0,
+      "to_seq": 1,
+      "witness": []
+    },
+    "range_root": "ea31db56fbb283f0a3aabaad43fe0680266d94489c2c9d804bf535b803a3076a"
+  },
+  "records": [
+    {
+      "action_id": "07f77fd7-9156-46ed-bd84-24caf6cc73a5",
+      "action_type": "decide",
+      "assurance": {
+        "attestation_mode": "self_attested",
+        "effect_mode": "confirmed",
+        "ledger_mode": "standalone"
+      },
+      "canonicalization_id": "jcs",
+      "capsule_id": "9e8a0d30f7bf337d2dca6eaaa885c9ea85c35700e6a17dd60525e1023d16aa29",
+      "developer": "cyberian-verifier@interop-2026-10",
+      "disposition": {
+        "approver": "policy",
+        "decision": "accept",
+        "human_disposed": false,
+        "verdict_class": "executed"
+      },
+      "effect": {
+        "effect_attestation": "ai.cyberiansystems.independent_verification",
+        "external_ref": "38cd9f68-469a-4aee-9336-1cf8f458dd0f",
+        "irreversibility_class": "two_way",
+        "request_digest": "80d8cd489c71de425f7fc6b58509bb09a67909bfa48805521b58b0f3c3afd2aa",
+        "response_digest": "d134e937ae82d69a7871d847a81779df746498af1f3594ff1da2bf22fa8f22c8",
+        "status": "confirmed",
+        "type": "inference_completion"
+      },
+      "format_version": "4",
+      "key_id": "08454f794eb4e7075976e01b1f6c2529b8b8c2fec01dbc9bb6565de21cb6bc66",
+      "operator": "cyberian-systems",
+      "references": [
+        {
+          "citation_purpose": "ran_under",
+          "digest": "27e5bfdaff58dffc68b4aaaaa494cd09211a29552148c3c80233b17aacabcc3d",
+          "digest_alg": "SHA-256",
+          "type": "ai.cyberiansystems.verification-receipt"
+        }
+      ],
+      "signature": "d284584ca30378236170706c69636174696f6e2f6167656e742d616374696f6e2d63617073756c652d696404582008454f794eb4e7075976e01b1f6c2529b8b8c2fec01dbc9bb6565de21cb6bc660127a058209e8a0d30f7bf337d2dca6eaaa885c9ea85c35700e6a17dd60525e1023d16aa295840721039dc62804300d9f92d0d100ccfa16f6701a4ae3df18b74dc4f3dd937796d68c00fd48d2ab1b97a47064366d4b687fd9be841509c495fa2e25c903909fc01",
+      "spec_version": "draft-mih-scitt-agent-action-capsule-05",
+      "timestamp": "2026-10-27T00:47:57.496560Z"
+    }
+  ],
+  "root": "9e8a0d30f7bf337d2dca6eaaa885c9ea85c35700e6a17dd60525e1023d16aa29"
+}

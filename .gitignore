@@ -1,0 +1,15 @@
+# Local Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Third-party vectors are fetched at run time (see RUN-LOG.md), never vendored
+fetched/
+
+# Keys live outside the repository; these patterns are a second guard
+*.key
+*.priv
+*.secret
+.env
+
+# Working plan: internal, not part of the published repository

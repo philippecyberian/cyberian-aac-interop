@@ -1,0 +1,12 @@
+{
+  "key_id": "08454f794eb4e7075976e01b1f6c2529b8b8c2fec01dbc9bb6565de21cb6bc66",
+  "kind": "mmr_checkpoint",
+  "log_id": "23582b1aa281d602ea1b401927a336d12464f07dfbe34d662987e87310511702",
+  "mmr_size": 1,
+  "prev_root": "",
+  "prev_size": 0,
+  "root": "ea31db56fbb283f0a3aabaad43fe0680266d94489c2c9d804bf535b803a3076a",
+  "signature": "8b2318de4cfdb03ddc89a4cab58ef714eb1756693f8e63e775841cdab9f1d4b815d192bc58c7f3cd198915e1c82af9082607207b8e0bbaf847a0f544986db408",
+  "timestamp": "2026-10-27T00:57:55Z",
+  "v": 1
+}

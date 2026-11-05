@@ -1,0 +1,18 @@
+Documentation and data licence
+
+Copyright 2026 Systèmes Cybériens inc. (Cyberian Systems)
+
+README.md, INTEROP-RESULT.md, RUN-LOG.md and the files in artifacts/ that this
+run produced are licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Not covered: material issued by the public witness at
+witness.agentactioncapsule.org, which Action State Group, Inc. operates. That is
+artifacts/witness-did.json, artifacts/witness-key.pem,
+artifacts/witness-response.json, artifacts/witness-receipt.cbor and the witness
+record inside artifacts/evidence-bundle.witnessed.json. It is reproduced here so
+that the verification can be repeated.
+
+The code in producer/ and tools/ is licensed separately, under the Apache
+License 2.0 in LICENSE.

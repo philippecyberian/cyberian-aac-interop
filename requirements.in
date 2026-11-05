@@ -1,0 +1,7 @@
+# Top-level pins for the interop run. requirements.lock (every dependency,
+# hash-pinned) is generated from this file; see RUN-LOG.md, Phase B.
+scitt-cose==0.5.0
+capsule-emit[checkpoint]==0.13.0
+agent-action-capsule==0.12.0
+checkpointed-local-log==0.7.0
+cyberian-client==0.4.2
