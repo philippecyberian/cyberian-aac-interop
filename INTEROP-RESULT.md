@@ -11,7 +11,7 @@ Run date: 2026-10-27 (UTC). Every command and its exact output is in [RUN-LOG.md
 
 | Counterparty | What ran | Status | Coordinates | Public record |
 |---|---|---|---|---|
-| Cyberian Systems | One capsule (format 4, draft-05) binding a Cyberian verification receipt by digest, produced with capsule-emit 0.13.0. Its log's checkpoint was registered once at `witness.agentactioncapsule.org` `POST /checkpoints`. The chain was verified offline with `capsule-emit verify --bundle` (VALID) and `scitt-cose` 0.5.0. | Ran and verified offline. Public record not yet chosen | capsule `9e8a0d30f7bf337d…16aa29`; log `23582b1aa281d602…511702#1`; witness entry `c68abea92414e7d6…79bd65a`, leaf 12521 | to be added |
+| Cyberian Systems | One capsule (format 4, draft-05) binding a Cyberian verification receipt by digest, produced with capsule-emit 0.13.0. Its log's checkpoint was registered once at `witness.agentactioncapsule.org` `POST /checkpoints`. The chain was verified offline with `capsule-emit verify --bundle` (VALID) and `scitt-cose` 0.5.0. | `ran & verified` | capsule `9e8a0d30f7bf337d…16aa29`; log `23582b1aa281d602…511702#1`; witness entry `c68abea92414e7d6…79bd65a`, leaf 12521 | https://github.com/philippecyberian/cyberian-aac-interop |
 
 ## What was sealed
 
@@ -50,10 +50,10 @@ All dependencies are installed from PyPI with hashes pinned in [requirements.loc
 | `cyberian-client` | 0.4.2 | test job and receipt retrieval |
 | `cbor2`, `cryptography` | 6.1.5, 50.0.2 | transitive |
 
-These upstream data sets were fetched at the release tags and checked against their own `SHA256SUMS`, without being vendored:
-- `scitt-cose` `v0.5.0` (`a5baf5ec…`): test vectors;
-- `agent-action-capsule` `python/v0.12.0` (`17f0c9f7…`): capsule vectors;
-- `capsule-emit` `python/v0.13.0` (`62047b78…`): `witnesses.json`.
+These upstream data sets were fetched at the release tags, without being vendored:
+- `scitt-cose` `v0.5.0` (`a5baf5ec…`): test vectors, checked against their own `SHA256SUMS`;
+- `agent-action-capsule` `python/v0.12.0` (`17f0c9f7…`): capsule vectors, checked against their own `SHA256SUMS`;
+- `capsule-emit` `python/v0.13.0` (`62047b78…`): `witnesses.json`, SHA-256 `702c0db1a8c16defa50ce37bfa1b6c01b389832fb093d1db939f1236dae014a1`. It was checked with capsule-emit's own directory validator, and its key matches the witness's DID document.
 
 ## Artifacts
 
@@ -102,7 +102,7 @@ Fields where the receipt and the AAC schema did not meet, as they were handled i
 1. **`effect.effect_attestation`**, required once an effect is dispatched or confirmed. None of the seeded values (`gate_executed`, `runtime_claimed`, `host_served_observed`) describes confirmation by a party other than the runtime that produced the effect. The capsule carries the namespaced value `ai.cyberiansystems.independent_verification`. The reference verifier reports it as an unknown registry value and grades it no stronger than `runtime_claimed` (draft-05 §5.2, §12).
 2. **`disposition.approver`** is a closed set (`human`, `policy`, `counterparty`). A verifier that is independent of both parties is none of these. The capsule uses `policy` as the nearest value.
 3. **`model_attestation`** requires `model_id` and `provider` together, and draft-05 does not define `provider`: §5.1 refers to the block, but -05 has no table for it. The block is left empty. The receipt, bound by digest, remains the record of what ran.
-4. **Digest constructions.** AAC digests are SHA-256 over RFC 8785 (JCS) JSON. The capsule treats the receipt as an opaque document: it digests the receipt bytes and recomputes none of the receipt's own fields. The capsule's `request_digest` and `response_digest` were computed from the job's own request and output, so a relying party can relate them to the receipt only with those bodies in hand.
+4. **Digest constructions.** AAC digests are SHA-256 over RFC 8785 (JCS) JSON. The capsule treats the receipt as an opaque document: it digests the receipt's RFC 8785 bytes and recomputes none of the receipt's own fields. The capsule's `request_digest` and `response_digest` were computed from the job's own request and output, so a relying party can relate them to the receipt only with those bodies in hand.
 5. **Floats.** AAC forbids floats in digest-bearing material, and the job's output is a float32 embedding. It was digested as a JSON object carrying the raw little-endian bytes in base64 (`dtype`, `byte_order`, `shape`, `data_base64`). That representation is the producer's choice, so two producers could digest the same output differently.
 6. **`references[].type`.** The CPB Artifact Type registry has no type for a verification receipt. The capsule uses the namespaced `ai.cyberiansystems.verification-receipt`, with `citation_purpose` `ran_under`. Under the grade non-propagation rule, nothing the receipt attests raises the capsule's grade.
 7. **The receipt's own claims stay in the receipt.** Its commitments and attestations are bound through the capsule's digest of the whole receipt, so the capsule needs no field for any of them. `cross_party` expects two signed halves, and the receipt is a single signed record.

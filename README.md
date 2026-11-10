@@ -13,18 +13,25 @@ Tested with Python 3.14.4 on Linux. Only the first two commands use the network 
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install --require-hashes -r requirements.lock
-mkdir -p fetched && curl -sSfL -o fetched/capsule-emit-v0.13.0-witnesses.json https://raw.githubusercontent.com/action-state-group/capsule-emit/62047b7864e6e1d7789eaa1c629dac1103778525/witnesses.json
+mkdir -p fetched && curl -sSfL -o fetched/capsule-emit-v0.13.0-witnesses.json https://raw.githubusercontent.com/action-state-group/capsule-emit/62047b7864e6e1d7789eaa1c629dac1103778525/witnesses.json && echo "702c0db1a8c16defa50ce37bfa1b6c01b389832fb093d1db939f1236dae014a1  fetched/capsule-emit-v0.13.0-witnesses.json" | sha256sum -c
 .venv/bin/capsule-emit verify --bundle artifacts/evidence-bundle.witnessed.json --witness-directory fetched/capsule-emit-v0.13.0-witnesses.json --require-signature
 .venv/bin/scitt-cose --statement artifacts/checkpoint.cbor --statement-pubkey artifacts/producer-key.pem --receipt artifacts/witness-receipt.cbor --receipt-log-pubkey artifacts/witness-key.pem --leaf-entry-hex c68abea92414e7d64bae3b4c2664d2cab650e34c72bade20414b43a1f79bd65a --json
 .venv/bin/agent-action-capsule verify artifacts/capsule.json
 ```
 
 Expected results:
+- **Command 2:** `fetched/capsule-emit-v0.13.0-witnesses.json: OK`.
 - **Command 3:** seven PASS lines and `VALID`.
 - **Command 4:** `"signature_verified": true` and `"ok": true`, at leaf 12521 of tree size 12522.
 - **Command 5:** `ok: True`, with two informational findings about the unregistered `effect_attestation` value.
 
-Change one byte in a copy of any of these files and the matching command fails (RUN-LOG D.5).
+Commands 3 and 4 take the witness key from different places:
+- **Command 3** reads it from capsule-emit's `witnesses.json`, which command 2 fetches and checks.
+- **Command 4** reads it from `artifacts/witness-key.pem` in this repository.
+
+Both hold the same key (see Public keys below).
+
+Change one byte in a copy of the capsule, the evidence bundle or the witness receipt, and the matching command fails (RUN-LOG D.5).
 
 Producing the capsule and submitting the checkpoint cannot be repeated from this repository: they needed an API key, the private signing key and the one witness submission. `producer/` holds the scripts that did it, and RUN-LOG Phases C and D show each run.
 
@@ -50,7 +57,7 @@ Witness key: `did:web:witness.agentactioncapsule.org#19a9ab3e02fad55c`, Ed25519 
 1. **Our code stays here.** Action State's libraries are used as pinned dependencies. Nothing of theirs is forked, vendored or modified, and no issue or pull request was opened against their repositories.
 2. **No customer data.** The receipt comes from a test job run for this purpose, on a short invented input.
 3. **Keys.** A fresh Ed25519 key was generated for this interop only, as the AAC profile requires. Its private half lives outside the repository.
-4. **Disclosure boundary.** The only Cyberian material in the sealed statement and this write-up is the verification receipt, bound by digest and checked against its public schema. Nothing about how receipts are produced appears here.
+4. **Disclosure boundary.** The only Cyberian material in the sealed statement and this write-up is the verification receipt, bound by digest. Its field names were checked against the SDK's public field table (RUN-LOG C.2). One field was not listed there yet; the table has listed it since SDK 0.5.2. Nothing about how receipts are produced appears here.
 5. **Network.** The run contacted only the package registry, Action State's public documentation and repositories (read-only), the public witness, and Cyberian's API for the test job.
 6. **Reproducibility.** Every dependency is pinned by hash, and every command from the verification phases is in RUN-LOG.md with its output.
 7. **One submission.** The witness received exactly one checkpoint, after review.
